@@ -43,10 +43,13 @@ public:
         ThreadsScriptVerif,  // int
         DatabaseCache,       // int
         SpendZeroConfChange, // bool
-        ObfuscationRounds,   // int
+        ZeromintEnable,      // bool
+        ZeromintPercentage,  // int
+        ZeromintPrefDenom,   // int
         AnonymizePivxAmount, //int
         ShowMasternodesTab,  // bool
         Listen,              // bool
+        StakeSplitThreshold, // int
         OptionIDRowCount,
     };
 
@@ -58,6 +61,8 @@ public:
     bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
     /** Updates current unit in memory, settings and emits displayUnitChanged(newUnit) signal */
     void setDisplayUnit(const QVariant& value);
+    /* Update StakeSplitThreshold's value in wallet */
+    void setStakeSplitThreshold(int value);
 
     /* Explicit getters */
     bool getMinimizeToTray() { return fMinimizeToTray; }
@@ -89,7 +94,9 @@ private:
 
 signals:
     void displayUnitChanged(int unit);
-    void obfuscationRoundsChanged(int);
+    void zeromintEnableChanged(bool);
+    void zeromintPercentageChanged(int);
+    void preferredDenomChanged(int);
     void anonymizePivxAmountChanged(int);
     void coinControlFeaturesChanged(bool);
 };
